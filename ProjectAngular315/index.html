@@ -1,0 +1,105 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="myPhoneBook">
+<head>
+    <title>Firebase and Angular tutorial.</title>
+    <link href="Content/bootstrap.css" rel="stylesheet" />
+</head>
+<body>
+    <h3>Enter New Contact</h3>
+    <div ng-controller="userController" class="col-lg-8">
+
+        <button class="btn btn-success" ng-show="!editMode" ng-click="phoneAddBtn()">
+            <span class="glyphicon glyphicon-user"></span> create
+        </button>
+        <form class="form-horizontal jumbotron ">
+            <div class="form-group">
+                <label class="col-sm-2 control-label">First Name:</label>
+                <div class="col-sm-10">
+                    <input type="text" name="firstName" value="" ng-model="firstName" placeholder="First Name:" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Last Name:</label>
+                <div class="col-sm-10">
+                    <input type="text" name="lastName" value="" ng-model="lastName" placeholder="Last Name:" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Main Number:</label>
+                <div class="col-sm-10">
+                    <input type="text" name="phoneHome" value="" ng-model="phoneHome" placeholder="Main Number:" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Second Number:</label>
+                <div class="col-sm-10">
+                    <input type="text" name="phoneCell" value="" ng-model="phoneCell" placeholder="Alternative:" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Country:</label>
+                <div class="col-sm-10">
+                    <input type="text" name="country" value="" ng-model="country" placeholder="Country:" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">City:</label>
+                <div class="col-sm-10">
+                    <input type="text" name="city" value="" ng-model="city" placeholder="City:" />
+                </div>
+            </div>
+        </form>
+        <button class="btn btn-success" ng-show="editMode" ng-click="phoneSaveBtn()">
+            <span class="glyphicon glyphicon-pencil"></span> update
+        </button>
+        <button class="btn btn-success" ng-show="editMode" ng-click="phoneCancelBtn()">
+            <span class="glyphicon glyphicon-pencil"></span>cancel
+        </button>
+        <h3>Phone Book</h3>
+
+        <table class="table table-striped caption jumbotron">
+            <thead>
+                <tr>
+                    <th>Edit</th>
+                    <th>First</th>
+                    <th>Last</th>
+                    <th>Main</th>
+                    <th>Mobil</th>
+                    <th>Country</th>
+                    <th>City</th>
+                    <th>Remove</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in tempPhone">
+                    <td>
+                        <button ng-click="phoneEditBtn($index)">
+                            <span class="glyphicon glyphicon-pencil">
+                            </span>&nbsp;&nbsp;Edit
+                        </button>
+                    </td>
+                    <td>{{ item.firstName }}</td>
+                    <td>{{ item.lastName }}</td>
+                    <td>{{ item.phoneHome }}</td>
+                    <td>{{ item.phoneCell }}</td>
+                    <td>{{ item.country }}</td>
+                    <td>{{ item.city }}</td>
+                    <td>
+                        <button ng-click="phoneDeleteBtn($index)">
+                            <span class="glyphicon glyphicon-trash"></span>&nbsp;&nbsp;Delete
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div>
+    </div>
+    <script src="Scripts/jquery-1.9.1.js"></script>
+    <script src="Scripts/bootstrap.js"></script>
+    <script src="Scripts/angular.js"></script>
+    <script src="app/_App.js"></script>
+    <script src="app/Services/PhoneServices.js"></script>
+    <script src="app/Controllers/UserController.js"></script>
+</body>
+</html>
